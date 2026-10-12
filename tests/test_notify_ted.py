@@ -21,6 +21,11 @@ class NotificationTests(unittest.TestCase):
         self.assertNotIn('今日精读', body)
         self.assertIn('精读（2026-10-11）', body)
 
+    def test_empty_site_sends_no_reading_notification(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(notify, 'ROOT', Path(tmp)):
+                self.assertEqual(notify.changed_pages({}, 'abc'), [])
+
     def test_manual_run_uses_latest_page(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp);(root/'docs').mkdir()

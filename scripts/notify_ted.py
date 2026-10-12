@@ -38,7 +38,7 @@ def changed_pages(event: dict, sha: str) -> list[str]:
     # A manual test, CSS update or index update links to the latest available lesson.
     existing = sorted(ROOT.glob('docs/????-??-??.html'), reverse=True)
     if not existing:
-        raise ValueError('No published lesson page exists')
+        return []
     return [existing[0].stem]
 
 
@@ -96,6 +96,9 @@ def main() -> None:
     token = os.environ['GH_TOKEN']
     event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
     days = changed_pages(event, sha)
+    if not days:
+        print('No lesson remains after this update; skipping reading notification')
+        return
     titles = page_titles(days)
     marker = f'TED 精读更新 · {sha[:12]}'
     # Exact commit identity makes workflow reruns idempotent.

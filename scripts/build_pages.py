@@ -99,9 +99,9 @@ def build() -> None:
 '''
         (OUT / page).write_text(frame(title, body, f'{speaker} 的 {topic}主题 TED 精读：双语导读、语言分析、练习及学习计划。'), encoding='utf-8')
         lessons.append({'day': day, 'title': title, 'speaker': speaker, 'duration': duration, 'topic': topic, 'page': page})
-    if not lessons:
-        raise ValueError('No dated TED lessons found')
     cards = '\n'.join(f'''<a class="lesson-card" href="{x['page']}"><div class="eyebrow"><time datetime="{x['day']}">{x['day']}</time><span class="pill">{esc(x['topic'])}</span></div><h2>{esc(x['title'])}</h2><p>{esc(x['speaker'])} · {esc(x['duration'])}</p><span class="card-cta">开始精读 <span aria-hidden="true">→</span></span></a>''' for x in lessons)
+    if not cards:
+        cards = '<p class="home-note">暂时没有精读材料，下一篇发布后会显示在这里。</p>'
     body = f'''<section class="home-hero"><span class="eyebrow">每天一篇 · 英语积累</span><h1>听懂一个观点，<br>学会一组表达。</h1><p>用 TED 练习理解、分析与表达。<br>每篇都有双语导读、语言拆解和口头练习。</p><div class="hero-tags"><span>官方来源</span><span>25 分钟学习</span><span>手机友好</span></div></section><section class="lesson-list" aria-labelledby="list-title"><div class="section-heading"><h2 id="list-title">精读目录</h2><span>{len(lessons)} 篇材料</span></div>{cards}</section><aside class="home-note"><h2>如何开始</h2><p>点开一篇材料，先看视频，再按目录选择学习部分。练习答案默认收起，尝试作答后再展开。</p></aside>'''
     (OUT / 'index.html').write_text(frame('学习首页', body, '适配手机的 TED 英语精读材料，包含双语导读、IELTS 表达练习和学习计划。'), encoding='utf-8')
     (OUT / '.nojekyll').touch()
