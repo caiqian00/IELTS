@@ -56,4 +56,7 @@ GitHub Pages 保持 main /docs 分支发布；本地正常 Git 推送会触发 P
 复用现有 Git/GitHub 认证；若推送需要交互且无人值守，明确报告失败，要求用户在本地先完成认证，不索取密钥值。
 若 gh 可用，查看 Pages 部署结果；否则实际请求 https://caiqian00.github.io/IELTS/当天日期.html，等待合理部署时间，确认返回新内容。
 不要把“推送成功”称为“Pages 已更新”，需要站点内容或部署记录证据；无法验证时保留该限制。
-最终汇报今天演讲、输出文件、Git 提交、推送和部署结果，以及手机可打开的正式网页链接。
+最终汇报今天演讲、输出文件、Git 提交、推送和部署结果，并包含：
+1. [精读首页](https://caiqian00.github.io/IELTS/)
+2. [今日精读：当天中文标题](https://caiqian00.github.io/IELTS/当天日期.html)
+云端 Notify TED update 工作流会在材料或网页提交后等待 Pages 发布完成，再发送 GitHub 手机通知；不需要另设 09:00 定时任务。

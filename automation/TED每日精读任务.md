@@ -51,4 +51,6 @@
 
 ## 方案变更
 
-用户选择本地 08:00 Codex 生成 → GitHub → Pages；云端 09:00 仅发送手机通知。当前任务无法直接编辑用户电脑中的 Automation，完整本地指令已保存，需桌面端应用。无需配置 OpenAI API Key。
+用户选择本地 08:00 Codex 生成 → GitHub → Pages；云端在网页更新后发送手机通知，不设固定时间。当前任务无法直接编辑用户电脑中的 Automation，完整本地指令已保存，需桌面端应用。无需配置 OpenAI API Key。
+
+用户进一步要求：取消 09:00 通知时间，有更新就发送 GitHub App 通知。Notify TED update 工作流等待 Pages 内容确认后，创建指派给 caiqian00 的 Issue，正文包含精读首页及具体材料链接。
